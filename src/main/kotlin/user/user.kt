@@ -1,5 +1,6 @@
 package c.s.sample.user
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
@@ -25,6 +26,9 @@ open class User {
 
 interface UserService {
     fun getUser(): User
+
+    @JvmDefault
+    fun userName(user:User):String = "${user.nickname} ${user.username}"
 }
 
 @Service
@@ -39,11 +43,21 @@ class UserServiceImpl : UserService {
     }
 }
 
+//@RestController
+//class UserController(private val userService: UserService) {
+//    @GetMapping("/get/one")
+//    fun getOne(): User {
+//        return userService.getUser()
+//    }
+//}
+
 @RestController
-class UserController(private val userService: UserService) {
+class UserController{
+    @Autowired
+   lateinit var userService: UserService;
+
     @GetMapping("/get/one")
     fun getOne(): User {
         return userService.getUser()
     }
 }
-

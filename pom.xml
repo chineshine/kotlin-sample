@@ -12,6 +12,8 @@
         <java.version>1.8</java.version>
         <kotlin.version>1.4.10</kotlin.version>
         <!--<kotlin.version>1.3.72</kotlin.version>-->
+        <!-- jvmDefault 设置 -->
+        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +74,8 @@
                 <configuration>
                     <args>
                         <arg>-Xjsr305=strict</arg>
+                        <!-- jvmDefault 设置 -->
+                        <arg>-Xjvm-default=compatibility</arg>
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
